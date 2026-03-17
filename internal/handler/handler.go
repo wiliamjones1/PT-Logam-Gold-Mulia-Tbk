@@ -1,14 +1,15 @@
 package handler
 
 import (
-	"crypto/tls"
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"html/template"
+	"io"
 	"log"
-	"net"
 	"net/http"
-	"net/smtp"
 	"strings"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html/v2"
@@ -153,8 +154,8 @@ func (h *Handler) KontakSubmit(c *fiber.Ctx) error {
 	}
 
 	// Send email notification
-	if h.cfg.SMTPHost != "" && h.cfg.SMTPUser != "" {
-		log.Printf("Sending contact email to %s via %s:%s", h.cfg.ContactEmail, h.cfg.SMTPHost, h.cfg.SMTPPort)
+	if h.cfg.ResendAPIKey != "" {
+		log.Printf("Sending contact email to %s via Resend API", h.cfg.ContactEmail)
 		if err := h.sendContactEmail(form); err != nil {
 			log.Printf("Failed to send contact email: %v", err)
 			return c.Render("pages/kontak", fiber.Map{
@@ -167,7 +168,7 @@ func (h *Handler) KontakSubmit(c *fiber.Ctx) error {
 			})
 		}
 	} else {
-		log.Printf("Contact form submission (SMTP not configured): Nama=%s, Email=%s, Pesan=%s", form.Nama, form.Email, form.Pesan)
+		log.Printf("Contact form submission (email not configured): Nama=%s, Email=%s, Pesan=%s", form.Nama, form.Email, form.Pesan)
 	}
 
 	return c.Render("pages/kontak", fiber.Map{
@@ -194,57 +195,40 @@ func (h *Handler) sendContactEmail(form *ContactForm) error {
 	}
 	body.WriteString(fmt.Sprintf("\nPesan:\n%s\n", form.Pesan))
 
-	msg := fmt.Sprintf("From: %s\r\nTo: %s\r\nSubject: %s\r\nMIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\nReply-To: %s\r\n\r\n%s",
-		h.cfg.SMTPUser, to, subject, form.Email, body.String())
+	payload := map[string]interface{}{
+		"from":    h.cfg.EmailFrom,
+		"to":      []string{to},
+		"subject": subject,
+		"text":    body.String(),
+		"reply_to": form.Email,
+	}
 
-	addr := h.cfg.SMTPHost + ":" + h.cfg.SMTPPort
-	auth := smtp.PlainAuth("", h.cfg.SMTPUser, h.cfg.SMTPPass, h.cfg.SMTPHost)
-
-	// Connect to SMTP server
-	conn, err := net.Dial("tcp", addr)
+	jsonData, err := json.Marshal(payload)
 	if err != nil {
-		return fmt.Errorf("dial: %w", err)
+		return fmt.Errorf("marshal: %w", err)
 	}
 
-	client, err := smtp.NewClient(conn, h.cfg.SMTPHost)
+	req, err := http.NewRequest("POST", "https://api.resend.com/emails", bytes.NewReader(jsonData))
 	if err != nil {
-		conn.Close()
-		return fmt.Errorf("smtp client: %w", err)
+		return fmt.Errorf("new request: %w", err)
 	}
-	defer client.Close()
+	req.Header.Set("Authorization", "Bearer "+h.cfg.ResendAPIKey)
+	req.Header.Set("Content-Type", "application/json")
 
-	// STARTTLS
-	tlsConfig := &tls.Config{ServerName: h.cfg.SMTPHost}
-	if err = client.StartTLS(tlsConfig); err != nil {
-		return fmt.Errorf("starttls: %w", err)
-	}
-
-	// Auth
-	if err = client.Auth(auth); err != nil {
-		return fmt.Errorf("auth: %w", err)
-	}
-
-	// Set sender and recipient
-	if err = client.Mail(h.cfg.SMTPUser); err != nil {
-		return fmt.Errorf("mail from: %w", err)
-	}
-	if err = client.Rcpt(to); err != nil {
-		return fmt.Errorf("rcpt to: %w", err)
-	}
-
-	// Write message
-	w, err := client.Data()
+	client := &http.Client{Timeout: 15 * time.Second}
+	resp, err := client.Do(req)
 	if err != nil {
-		return fmt.Errorf("data: %w", err)
+		return fmt.Errorf("send request: %w", err)
 	}
-	if _, err = w.Write([]byte(msg)); err != nil {
-		return fmt.Errorf("write: %w", err)
-	}
-	if err = w.Close(); err != nil {
-		return fmt.Errorf("close data: %w", err)
+	defer resp.Body.Close()
+
+	if resp.StatusCode >= 400 {
+		respBody, _ := io.ReadAll(resp.Body)
+		return fmt.Errorf("resend API error (status %d): %s", resp.StatusCode, string(respBody))
 	}
 
-	return client.Quit()
+	log.Printf("Email sent successfully to %s", to)
+	return nil
 }
 
 func isValidEmail(email string) bool {

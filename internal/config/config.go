@@ -7,10 +7,8 @@ type Config struct {
 	AppEnv       string
 	BaseURL      string
 	ContactEmail string
-	SMTPHost     string
-	SMTPPort     string
-	SMTPUser     string
-	SMTPPass     string
+	ResendAPIKey string
+	EmailFrom    string
 }
 
 func Load() *Config {
@@ -19,10 +17,8 @@ func Load() *Config {
 		AppEnv:       getEnv("APP_ENV", "development"),
 		BaseURL:      getEnv("BASE_URL", "https://logam.gold"),
 		ContactEmail: getEnv("CONTACT_EMAIL", "wiliamjones@pm.me"),
-		SMTPHost:     getEnv("SMTP_HOST", ""),
-		SMTPPort:     getEnv("SMTP_PORT", "587"),
-		SMTPUser:     getEnv("SMTP_USER", ""),
-		SMTPPass:     getEnv("SMTP_PASS", ""),
+		ResendAPIKey: getEnv("RESEND_API_KEY", ""),
+		EmailFrom:    getEnv("EMAIL_FROM", "Logam Gold <onboarding@resend.dev>"),
 	}
 }
 
