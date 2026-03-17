@@ -1,9 +1,11 @@
 package handler
 
 import (
+	"crypto/tls"
 	"fmt"
 	"html/template"
 	"log"
+	"net"
 	"net/http"
 	"net/smtp"
 	"strings"
@@ -152,11 +154,18 @@ func (h *Handler) KontakSubmit(c *fiber.Ctx) error {
 
 	// Send email notification
 	if h.cfg.SMTPHost != "" && h.cfg.SMTPUser != "" {
-		go func() {
-			if err := h.sendContactEmail(form); err != nil {
-				log.Printf("Failed to send contact email: %v", err)
-			}
-		}()
+		log.Printf("Sending contact email to %s via %s:%s", h.cfg.ContactEmail, h.cfg.SMTPHost, h.cfg.SMTPPort)
+		if err := h.sendContactEmail(form); err != nil {
+			log.Printf("Failed to send contact email: %v", err)
+			return c.Render("pages/kontak", fiber.Map{
+				"Title":       "Hubungi Kami — PT Logam Gold Mulia Tbk",
+				"Description": "Hubungi PT Logam Gold Mulia Tbk untuk informasi lebih lanjut.",
+				"Canonical":   h.cfg.BaseURL + "/kontak",
+				"Page":        "kontak",
+				"Error":       "Maaf, terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti.",
+				"Form":        form,
+			})
+		}
 	} else {
 		log.Printf("Contact form submission (SMTP not configured): Nama=%s, Email=%s, Pesan=%s", form.Nama, form.Email, form.Pesan)
 	}
@@ -188,10 +197,54 @@ func (h *Handler) sendContactEmail(form *ContactForm) error {
 	msg := fmt.Sprintf("From: %s\r\nTo: %s\r\nSubject: %s\r\nMIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\nReply-To: %s\r\n\r\n%s",
 		h.cfg.SMTPUser, to, subject, form.Email, body.String())
 
-	auth := smtp.PlainAuth("", h.cfg.SMTPUser, h.cfg.SMTPPass, h.cfg.SMTPHost)
 	addr := h.cfg.SMTPHost + ":" + h.cfg.SMTPPort
+	auth := smtp.PlainAuth("", h.cfg.SMTPUser, h.cfg.SMTPPass, h.cfg.SMTPHost)
 
-	return smtp.SendMail(addr, auth, h.cfg.SMTPUser, []string{to}, []byte(msg))
+	// Connect to SMTP server
+	conn, err := net.Dial("tcp", addr)
+	if err != nil {
+		return fmt.Errorf("dial: %w", err)
+	}
+
+	client, err := smtp.NewClient(conn, h.cfg.SMTPHost)
+	if err != nil {
+		conn.Close()
+		return fmt.Errorf("smtp client: %w", err)
+	}
+	defer client.Close()
+
+	// STARTTLS
+	tlsConfig := &tls.Config{ServerName: h.cfg.SMTPHost}
+	if err = client.StartTLS(tlsConfig); err != nil {
+		return fmt.Errorf("starttls: %w", err)
+	}
+
+	// Auth
+	if err = client.Auth(auth); err != nil {
+		return fmt.Errorf("auth: %w", err)
+	}
+
+	// Set sender and recipient
+	if err = client.Mail(h.cfg.SMTPUser); err != nil {
+		return fmt.Errorf("mail from: %w", err)
+	}
+	if err = client.Rcpt(to); err != nil {
+		return fmt.Errorf("rcpt to: %w", err)
+	}
+
+	// Write message
+	w, err := client.Data()
+	if err != nil {
+		return fmt.Errorf("data: %w", err)
+	}
+	if _, err = w.Write([]byte(msg)); err != nil {
+		return fmt.Errorf("write: %w", err)
+	}
+	if err = w.Close(); err != nil {
+		return fmt.Errorf("close data: %w", err)
+	}
+
+	return client.Quit()
 }
 
 func isValidEmail(email string) bool {
