@@ -1,77 +1,104 @@
 <!-- CTA Banner -->
-<section class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16 lg:py-20">
+<section class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-14 lg:py-18">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-white mb-4">Siap Membangun Kemitraan Bersama?</h2>
-        <p class="text-gray-300 text-base md:text-lg mb-8 max-w-2xl mx-auto">Kami terbuka untuk berdiskusi mengenai peluang kerja sama dan solusi bisnis yang saling menguntungkan.</p>
-        <a href="/kontak" class="inline-flex items-center px-8 py-3.5 text-sm font-semibold text-gray-900 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-lg hover:from-amber-500 hover:to-yellow-500 shadow-lg hover:shadow-xl transition-all">
-            Hubungi Kami Sekarang
-            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
+        <span class="inline-block px-3 py-1 text-xs font-semibold text-amber-400 bg-amber-500/10 rounded-full mb-4">Hubungan Investor & Kemitraan</span>
+        <h2 class="text-2xl md:text-3xl font-serif font-bold text-white mb-4">Tertarik Mengenal Lebih Lanjut?</h2>
+        <p class="text-gray-400 text-sm md:text-base mb-8 max-w-2xl mx-auto">Untuk pertanyaan investasi, kerja sama bisnis, atau informasi korporasi, tim kami siap membantu Anda.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="/kontak" class="inline-flex items-center px-7 py-3 text-sm font-semibold text-gray-900 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-lg hover:from-amber-500 hover:to-yellow-500 shadow-lg hover:shadow-xl transition-all">
+                Hubungi Kami
+                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="/investor" class="inline-flex items-center px-7 py-3 text-sm font-medium text-gray-300 border border-gray-600 rounded-lg hover:border-gray-400 hover:text-white transition-all">
+                Informasi Investor
+            </a>
+        </div>
     </div>
 </section>
 
 <!-- Footer -->
 <footer class="bg-gray-950 text-gray-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6">
             <!-- Company Info -->
-            <div class="lg:col-span-1">
-                <a href="/" class="flex items-center gap-2 mb-4 group">
+            <div class="lg:col-span-4">
+                <a href="/" class="flex items-center gap-2.5 mb-4 group">
                     <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-md">
                         <span class="text-white font-bold text-sm font-serif">LG</span>
                     </div>
                     <div class="flex flex-col">
                         <span class="text-sm font-semibold text-white leading-tight">Logam Gold</span>
-                        <span class="text-[10px] text-amber-500 font-medium leading-tight">logam.gold</span>
+                        <span class="text-[10px] text-amber-500 font-medium leading-tight">Perseroan Terbuka</span>
                     </div>
                 </a>
-                <p class="text-sm text-gray-400 leading-relaxed mb-4">
-                    PT Logam Gold Mulia Tbk adalah perusahaan terbuka yang bergerak di industri logam mulia, berkomitmen pada kualitas, integritas, dan kepercayaan.
-                </p>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4">{{.Corp.LegalName}}</p>
+                <p class="text-xs text-gray-500 leading-relaxed mb-4">{{.Corp.OverviewShort}}</p>
+                <div class="flex items-center gap-4 text-xs text-gray-500">
+                    <span class="inline-flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                        {{.Corp.Status}}
+                    </span>
+                </div>
             </div>
 
-            <!-- Quick Links -->
-            <div>
-                <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Navigasi</h3>
-                <ul class="space-y-2.5">
-                    <li><a href="/" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Beranda</a></li>
-                    <li><a href="/tentang" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Tentang Perusahaan</a></li>
-                    <li><a href="/layanan" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Layanan & Bisnis</a></li>
-                    <li><a href="/komitmen" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Komitmen Kami</a></li>
+            <!-- Perusahaan links -->
+            <div class="lg:col-span-2">
+                <h3 class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Perusahaan</h3>
+                <ul class="space-y-2">
+                    <li><a href="/tentang" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Profil Perusahaan</a></li>
+                    <li><a href="/layanan" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Lini Bisnis</a></li>
                     <li><a href="/tata-kelola" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Tata Kelola</a></li>
+                    <li><a href="/berita" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Berita</a></li>
+                    <li><a href="/kontak" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Kontak</a></li>
                 </ul>
             </div>
 
-            <!-- More Links -->
-            <div>
-                <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Informasi</h3>
-                <ul class="space-y-2.5">
-                    <li><a href="/berita" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Berita & Wawasan</a></li>
+            <!-- Investor links -->
+            <div class="lg:col-span-2">
+                <h3 class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Investor</h3>
+                <ul class="space-y-2">
+                    <li><a href="/investor" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Hubungan Investor</a></li>
+                    <li><a href="/dokumen" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Dokumen & Laporan</a></li>
                     <li><a href="/faq" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">FAQ</a></li>
-                    <li><a href="/kontak" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Hubungi Kami</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal links -->
+            <div class="lg:col-span-2">
+                <h3 class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Legal</h3>
+                <ul class="space-y-2">
+                    <li><a href="/kebijakan-privasi" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Kebijakan Privasi</a></li>
+                    <li><a href="/syarat-penggunaan" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Syarat Penggunaan</a></li>
+                    <li><a href="/disclaimer" class="text-sm text-gray-400 hover:text-amber-400 transition-colors">Disclaimer</a></li>
                 </ul>
             </div>
 
             <!-- Contact -->
-            <div>
-                <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Kontak</h3>
-                <ul class="space-y-3">
-                    <li class="flex items-start gap-3">
+            <div class="lg:col-span-2">
+                <h3 class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Kontak</h3>
+                <ul class="space-y-2.5 text-sm">
+                    <li class="flex items-start gap-2">
                         <svg class="w-4 h-4 mt-0.5 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                        <span class="text-sm">info@logam.gold</span>
+                        <span class="text-gray-400">{{.Corp.Email}}</span>
                     </li>
-                    <li class="flex items-start gap-3">
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 mt-0.5 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/></svg>
+                        <span class="text-gray-400">{{.Corp.InvestorEmail}}</span>
+                    </li>
+                    <li class="flex items-start gap-2">
                         <svg class="w-4 h-4 mt-0.5 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
-                        <span class="text-sm">logam.gold</span>
+                        <span class="text-gray-400">{{.Corp.Website}}</span>
                     </li>
                 </ul>
             </div>
         </div>
 
         <!-- Bottom -->
-        <div class="mt-10 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-xs text-gray-500">&copy; 2026 PT Logam Gold Mulia Tbk. Seluruh hak cipta dilindungi.</p>
-            <p class="text-xs text-gray-600">logam.gold</p>
+        <div class="mt-10 pt-8 border-t border-gray-800">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-gray-500">&copy; {{year}} {{.Corp.LegalName}}. Seluruh hak cipta dilindungi undang-undang.</p>
+                <p class="text-xs text-gray-600 text-center md:text-right max-w-xl">Informasi yang disajikan di situs ini bersifat umum dan informatif. Untuk informasi material, silakan merujuk pada keterbukaan informasi resmi melalui kanal yang ditentukan otoritas pasar modal.</p>
+            </div>
         </div>
     </div>
 </footer>

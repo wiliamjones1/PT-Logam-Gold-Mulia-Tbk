@@ -16,12 +16,17 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://logam.gold/komitmen</loc>
+    <loc>https://logam.gold/tata-kelola</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://logam.gold/tata-kelola</loc>
+    <loc>https://logam.gold/investor</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://logam.gold/dokumen</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -39,5 +44,20 @@
     <loc>https://logam.gold/kontak</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://logam.gold/kebijakan-privasi</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://logam.gold/syarat-penggunaan</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://logam.gold/disclaimer</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

@@ -68,11 +68,15 @@ func main() {
 	app.Get("/", h.Home)
 	app.Get("/tentang", h.Tentang)
 	app.Get("/layanan", h.Layanan)
-	app.Get("/komitmen", h.Komitmen)
 	app.Get("/tata-kelola", h.TataKelola)
+	app.Get("/investor", h.InvestorRelations)
+	app.Get("/dokumen", h.Dokumen)
 	app.Get("/berita", h.Berita)
 	app.Get("/faq", h.FAQ)
 	app.Get("/kontak", h.Kontak)
+	app.Get("/kebijakan-privasi", h.KebijakanPrivasi)
+	app.Get("/syarat-penggunaan", h.SyaratPenggunaan)
+	app.Get("/disclaimer", h.Disclaimer)
 
 	port := cfg.Port
 	if port == "" {

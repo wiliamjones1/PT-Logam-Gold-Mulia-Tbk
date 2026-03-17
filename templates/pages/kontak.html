@@ -1,131 +1,114 @@
 <!-- Page Header -->
-<section class="bg-gradient-to-br from-gray-50 via-white to-amber-50/30 py-16 lg:py-24">
+<section class="bg-gradient-to-br from-gray-50 via-white to-amber-50/30 py-14 lg:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl scroll-reveal">
-            <span class="text-xs font-semibold text-amber-700 uppercase tracking-widest">Hubungi Kami</span>
-            <h1 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-gray-900">
-                Mari
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-yellow-600">Terhubung</span>
-            </h1>
-            <p class="mt-6 text-base md:text-lg text-gray-600 leading-relaxed">
-                Kami terbuka untuk berdiskusi mengenai peluang kerja sama, pertanyaan, atau informasi lebih lanjut seputar PT Logam Gold Mulia Tbk.
-            </p>
+            <div class="flex items-center gap-2 text-xs text-gray-500 mb-4">
+                <a href="/" class="hover:text-amber-700 transition-colors">Beranda</a>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-gray-900 font-medium">Kontak</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-serif font-bold text-gray-900">Hubungi Kami</h1>
+            <p class="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">Sampaikan pertanyaan, masukan, atau kebutuhan informasi Anda kepada {{.Corp.LegalName}}.</p>
         </div>
     </div>
 </section>
 
-<!-- Contact Content -->
-<section class="py-16 lg:py-24 bg-white">
+<!-- Contact Grid -->
+<section class="py-14 lg:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-5 gap-12 lg:gap-16">
-            <!-- Contact Form -->
-            <div class="lg:col-span-3 scroll-reveal">
-                <h2 class="text-2xl font-serif font-bold text-gray-900 mb-2">Kirim Pesan</h2>
-                <p class="text-sm text-gray-600 mb-8">Isi formulir di bawah ini dan tim kami akan menghubungi Anda dalam waktu dekat.</p>
+        <div class="grid lg:grid-cols-5 gap-10">
+            <!-- Contact Info -->
+            <div class="lg:col-span-2 space-y-6 scroll-reveal">
+                <!-- Office -->
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                    <h3 class="text-sm font-semibold text-gray-900 mb-4">Kantor Pusat</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-4 h-4 text-amber-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <p class="text-xs text-gray-600 leading-relaxed">{{fallback .Corp.HeadOffice "Alamat akan diinformasikan"}}</p>
+                        </div>
+                        {{if .Corp.Phone}}
+                        <div class="flex items-start gap-3">
+                            <svg class="w-4 h-4 text-amber-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <p class="text-xs text-gray-600">{{.Corp.Phone}}</p>
+                        </div>
+                        {{end}}
+                        <div class="flex items-start gap-3">
+                            <svg class="w-4 h-4 text-amber-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <a href="mailto:{{.Corp.Email}}" class="text-xs text-amber-700 hover:underline">{{.Corp.Email}}</a>
+                        </div>
+                    </div>
+                </div>
 
-                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5" id="contact-form">
-                    <input type="hidden" name="access_key" value="84c2c612-7b3c-4e75-a60f-82371245325e">
-                    <input type="hidden" name="subject" value="[Logam Gold] Pesan Baru dari Website">
-                    <input type="hidden" name="from_name" value="PT Logam Gold Mulia Tbk">
-                    <input type="hidden" name="redirect" value="https://logam.gold/kontak">
-                    <input type="checkbox" name="botcheck" class="hidden" style="display:none">
-                    <div class="grid sm:grid-cols-2 gap-5">
-                        <div>
-                            <label for="nama" class="block text-sm font-medium text-gray-700 mb-1.5">Nama Lengkap <span class="text-red-500">*</span></label>
-                            <input type="text" id="nama" name="nama" required minlength="2" maxlength="100"
-                                class="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-400 transition-colors"
-                                placeholder="Masukkan nama lengkap">
+                <!-- Department Contacts -->
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                    <h3 class="text-sm font-semibold text-gray-900 mb-4">Departemen</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-600">Investor Relations</span>
+                            <a href="mailto:{{.Corp.IREmail}}" class="text-xs text-amber-700 hover:underline">{{.Corp.IREmail}}</a>
                         </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">Alamat Email <span class="text-red-500">*</span></label>
-                            <input type="email" id="email" name="email" required maxlength="254"
-                                class="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-400 transition-colors"
-                                placeholder="nama@email.com">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-600">Sekretaris Perusahaan</span>
+                            <a href="mailto:{{.Corp.CorpSecEmail}}" class="text-xs text-amber-700 hover:underline">{{.Corp.CorpSecEmail}}</a>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-600">Umum</span>
+                            <a href="mailto:{{.Corp.Email}}" class="text-xs text-amber-700 hover:underline">{{.Corp.Email}}</a>
                         </div>
                     </div>
-                    <div class="grid sm:grid-cols-2 gap-5">
-                        <div>
-                            <label for="telepon" class="block text-sm font-medium text-gray-700 mb-1.5">Nomor Telepon</label>
-                            <input type="tel" id="telepon" name="telepon" maxlength="20"
-                                class="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-400 transition-colors"
-                                placeholder="+62 xxx xxxx xxxx">
-                        </div>
-                        <div>
-                            <label for="perusahaan" class="block text-sm font-medium text-gray-700 mb-1.5">Perusahaan</label>
-                            <input type="text" id="perusahaan" name="perusahaan" maxlength="100"
-                                class="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-400 transition-colors"
-                                placeholder="Nama perusahaan">
-                        </div>
-                    </div>
-                    <div>
-                        <label for="pesan" class="block text-sm font-medium text-gray-700 mb-1.5">Pesan <span class="text-red-500">*</span></label>
-                        <textarea id="pesan" name="pesan" rows="5" required minlength="10" maxlength="2000"
-                            class="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-400 transition-colors resize-y"
-                            placeholder="Tuliskan pesan atau pertanyaan Anda..."></textarea>
-                    </div>
-                    <div>
-                        <button type="submit" class="inline-flex items-center px-8 py-3.5 text-sm font-semibold text-white bg-gradient-to-r from-amber-600 to-yellow-600 rounded-xl hover:from-amber-700 hover:to-yellow-700 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500/40 focus:ring-offset-2">
-                            Kirim Pesan
-                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
-                        </button>
-                    </div>
-                </form>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="bg-amber-50/50 border border-amber-100 rounded-xl p-4">
+                    <p class="text-[10px] text-amber-800 leading-relaxed">Catatan: Formulir ini ditujukan untuk pertanyaan umum. Untuk hal-hal yang bersifat rahasia atau sensitif, silakan hubungi langsung melalui email resmi Perseroan.</p>
+                </div>
             </div>
 
-            <!-- Contact Info -->
-            <div class="lg:col-span-2 scroll-reveal">
-                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-xl">
-                    <h3 class="text-lg font-serif font-bold text-white mb-6">Informasi Kontak</h3>
-                    <div class="space-y-5">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-400 mb-0.5">Email</p>
-                                <p class="text-sm text-white font-medium">info@logam.gold</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-400 mb-0.5">Website</p>
-                                <p class="text-sm text-white font-medium">logam.gold</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-400 mb-0.5">Jam Operasional</p>
-                                <p class="text-sm text-white font-medium">Senin — Jumat</p>
-                                <p class="text-xs text-gray-400">09.00 — 17.00 WIB</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Contact Form -->
+            <div class="lg:col-span-3 scroll-reveal">
+                <div class="bg-gray-50 rounded-2xl p-6 lg:p-8 border border-gray-100">
+                    <h2 class="text-lg font-serif font-bold text-gray-900 mb-6">Formulir Kontak</h2>
+                    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
+                        <input type="hidden" name="access_key" value="84c2c612-7b3c-4e75-a60f-82371245325e">
+                        <input type="hidden" name="subject" value="Pesan dari Website logam.gold">
+                        <input type="hidden" name="from_name" value="PT Logam Gold Mulia Tbk Website">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-                <!-- WhatsApp CTA -->
-                <div class="mt-6 bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-green-200 transition-all">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center shadow-md shrink-0">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="name" class="block text-xs font-medium text-gray-700 mb-1.5">Nama Lengkap <span class="text-red-500">*</span></label>
+                                <input type="text" id="name" name="name" required class="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors" placeholder="Nama Anda">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-medium text-gray-700 mb-1.5">Email <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" required class="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors" placeholder="email@contoh.com">
+                            </div>
                         </div>
+
                         <div>
-                            <p class="text-sm font-semibold text-gray-900">Hubungi via WhatsApp</p>
-                            <p class="text-xs text-gray-500">Respon cepat di jam kerja</p>
+                            <label for="category" class="block text-xs font-medium text-gray-700 mb-1.5">Kategori Pertanyaan</label>
+                            <select id="category" name="category" class="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors">
+                                <option value="umum">Pertanyaan Umum</option>
+                                <option value="investor">Investor Relations</option>
+                                <option value="media">Media & Pers</option>
+                                <option value="kerjasama">Kerjasama Bisnis</option>
+                                <option value="lainnya">Lainnya</option>
+                            </select>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Additional Info -->
-                <div class="mt-6 p-6 bg-amber-50/50 border border-amber-100 rounded-2xl">
-                    <p class="text-xs text-amber-800 leading-relaxed">
-                        <strong>Catatan:</strong> Untuk pertanyaan mengenai informasi spesifik perusahaan, data keuangan, atau informasi yang bersifat material, silakan menghubungi bagian terkait melalui kanal komunikasi resmi perusahaan.
-                    </p>
+                        <div>
+                            <label for="subject_line" class="block text-xs font-medium text-gray-700 mb-1.5">Subjek</label>
+                            <input type="text" id="subject_line" name="subject_line" class="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors" placeholder="Perihal pesan Anda">
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs font-medium text-gray-700 mb-1.5">Pesan <span class="text-red-500">*</span></label>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors resize-none" placeholder="Tuliskan pesan Anda..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full px-6 py-3 text-sm font-semibold text-white bg-amber-700 rounded-lg hover:bg-amber-800 focus:ring-4 focus:ring-amber-500/20 transition-all duration-300">Kirim Pesan</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,185 +1,78 @@
 <!-- Page Header -->
-<section class="bg-gradient-to-br from-gray-50 via-white to-amber-50/30 py-16 lg:py-24">
+<section class="bg-gradient-to-br from-gray-50 via-white to-amber-50/30 py-14 lg:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl scroll-reveal">
-            <span class="text-xs font-semibold text-amber-700 uppercase tracking-widest">Layanan & Bisnis</span>
-            <h1 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-gray-900">
-                Solusi Bisnis
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-yellow-600">Logam Mulia</span>
-            </h1>
-            <p class="mt-6 text-base md:text-lg text-gray-600 leading-relaxed">
-                PT Logam Gold Mulia Tbk menyediakan rangkaian layanan profesional yang dirancang untuk memenuhi kebutuhan mitra bisnis di industri logam mulia.
-            </p>
+            <div class="flex items-center gap-2 text-xs text-gray-500 mb-4">
+                <a href="/" class="hover:text-amber-700 transition-colors">Beranda</a>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-gray-900 font-medium">Lini Bisnis</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-serif font-bold text-gray-900">Lini Bisnis</h1>
+            <p class="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">Bidang usaha {{.Corp.LegalName}} yang berfokus pada industri logam mulia dan sektor terkait.</p>
         </div>
     </div>
 </section>
 
-<!-- Services Grid -->
-<section class="py-16 lg:py-24 bg-white">
+<!-- Business Lines -->
+<section class="py-14 lg:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
-            <!-- Service 1 -->
-            <div class="group bg-white border border-gray-100 rounded-2xl p-8 lg:p-10 hover:border-amber-200 hover:shadow-2xl hover:shadow-amber-500/5 transition-all duration-300 scroll-reveal">
-                <div class="w-14 h-14 mb-6 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                </div>
-                <h3 class="text-xl font-serif font-bold text-gray-900 mb-3">Perdagangan Logam Mulia</h3>
-                <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                    Layanan perdagangan logam mulia yang profesional dan terpercaya. Kami mengedepankan transparansi dalam setiap transaksi dengan standar kualitas yang ketat dan proses yang terstruktur untuk memastikan keamanan dan kepuasan setiap mitra bisnis.
-                </p>
-                <ul class="space-y-2">
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Proses transaksi yang transparan
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Standar kualitas terjamin
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Dukungan profesional end-to-end
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Service 2 -->
-            <div class="group bg-white border border-gray-100 rounded-2xl p-8 lg:p-10 hover:border-amber-200 hover:shadow-2xl hover:shadow-amber-500/5 transition-all duration-300 scroll-reveal">
-                <div class="w-14 h-14 mb-6 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-                </div>
-                <h3 class="text-xl font-serif font-bold text-gray-900 mb-3">Distribusi</h3>
-                <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                    Jaringan distribusi yang andal dan efisien untuk memastikan logam mulia dapat diakses oleh mitra bisnis secara tepat waktu. Kami mengutamakan keamanan, ketepatan, dan efisiensi dalam setiap proses distribusi yang kami jalankan.
-                </p>
-                <ul class="space-y-2">
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Jaringan distribusi terkelola
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Proses yang aman dan terstruktur
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Ketepatan waktu pengiriman
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Service 3 -->
-            <div class="group bg-white border border-gray-100 rounded-2xl p-8 lg:p-10 hover:border-amber-200 hover:shadow-2xl hover:shadow-amber-500/5 transition-all duration-300 scroll-reveal">
-                <div class="w-14 h-14 mb-6 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                </div>
-                <h3 class="text-xl font-serif font-bold text-gray-900 mb-3">Solusi Kemitraan</h3>
-                <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                    Program kemitraan yang dirancang untuk menciptakan nilai bersama. Kami membuka peluang kerja sama yang fleksibel dan strategis bagi pelaku bisnis yang ingin berkolaborasi dalam ekosistem industri logam mulia.
-                </p>
-                <ul class="space-y-2">
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Skema kerja sama yang fleksibel
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Pendampingan bisnis profesional
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Pertumbuhan bersama yang berkelanjutan
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Service 4 -->
-            <div class="group bg-white border border-gray-100 rounded-2xl p-8 lg:p-10 hover:border-amber-200 hover:shadow-2xl hover:shadow-amber-500/5 transition-all duration-300 scroll-reveal">
-                <div class="w-14 h-14 mb-6 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                </div>
-                <h3 class="text-xl font-serif font-bold text-gray-900 mb-3">Layanan Korporasi</h3>
-                <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                    Dukungan korporasi yang komprehensif untuk membantu mitra bisnis dalam mengoptimalkan operasional mereka di sektor logam mulia. Dari konsultasi hingga implementasi, kami siap mendampingi setiap langkah bisnis Anda.
-                </p>
-                <ul class="space-y-2">
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Konsultasi bisnis strategis
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Dukungan operasional terpadu
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Solusi yang disesuaikan dengan kebutuhan
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Service 5 -->
-            <div class="group bg-white border border-gray-100 rounded-2xl p-8 lg:p-10 hover:border-amber-200 hover:shadow-2xl hover:shadow-amber-500/5 transition-all duration-300 md:col-span-2 scroll-reveal">
-                <div class="max-w-2xl">
-                    <div class="w-14 h-14 mb-6 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+        {{if hasItems .Corp.BusinessLines}}
+        <div class="space-y-8 scroll-reveal">
+            {{range .Corp.BusinessLines}}
+            <div class="bg-gray-50 rounded-2xl p-6 lg:p-8 border border-gray-100">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
+                        <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                     </div>
-                    <h3 class="text-xl font-serif font-bold text-gray-900 mb-3">Pengadaan & Dukungan Bisnis</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                        Layanan pengadaan dan dukungan bisnis yang terintegrasi untuk mendukung kebutuhan operasional di sektor logam mulia. Kami menyediakan solusi pengadaan yang efisien, transparan, dan sesuai dengan standar industri, memastikan setiap proses berjalan dengan lancar dan profesional.
-                    </p>
-                    <div class="grid sm:grid-cols-2 gap-2">
-                        <div class="flex items-center gap-2 text-sm text-gray-600">
-                            <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            Proses pengadaan terstruktur
-                        </div>
-                        <div class="flex items-center gap-2 text-sm text-gray-600">
-                            <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            Kepatuhan terhadap standar industri
-                        </div>
-                        <div class="flex items-center gap-2 text-sm text-gray-600">
-                            <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            Dukungan teknis komprehensif
-                        </div>
-                        <div class="flex items-center gap-2 text-sm text-gray-600">
-                            <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            Efisiensi biaya dan waktu
-                        </div>
+                    <div>
+                        <h3 class="text-lg font-serif font-bold text-gray-900 mb-2">{{.Name}}</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">{{.Description}}</p>
                     </div>
                 </div>
             </div>
+            {{end}}
         </div>
+        {{else}}
+        <div class="max-w-lg mx-auto text-center scroll-reveal">
+            <div class="w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            </div>
+            <h2 class="text-xl font-serif font-bold text-gray-900 mb-3">Informasi Segera Hadir</h2>
+            <p class="text-sm text-gray-600 leading-relaxed">Detail lini bisnis Perseroan akan dipublikasikan setelah proses korporasi selesai. Hubungi kami untuk informasi lebih lanjut.</p>
+        </div>
+        {{end}}
     </div>
 </section>
 
-<!-- Service Process -->
-<section class="py-16 lg:py-24 bg-gradient-to-b from-gray-50 to-white">
+<!-- Sector Overview -->
+<section class="py-14 lg:py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center mb-12 lg:mb-16 scroll-reveal">
-            <span class="text-xs font-semibold text-amber-700 uppercase tracking-widest">Proses Layanan</span>
-            <h2 class="mt-3 text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-gray-900">Alur Kerja Sama yang Terstruktur</h2>
-            <p class="mt-4 text-base text-gray-600">Kami menerapkan proses yang jelas dan profesional untuk setiap kerja sama bisnis.</p>
+        <div class="max-w-3xl mx-auto text-center scroll-reveal">
+            <span class="text-xs font-semibold text-amber-700 uppercase tracking-widest">Sektor Industri</span>
+            <h2 class="mt-3 text-2xl md:text-3xl font-serif font-bold text-gray-900">{{fallback .Corp.Sector "Logam Mulia"}}</h2>
+            <p class="mt-4 text-sm text-gray-600 leading-relaxed">Perseroan bergerak dalam sektor logam mulia yang memiliki peran strategis dalam perekonomian nasional. Industri ini mencakup rantai nilai dari eksplorasi, pengolahan, hingga distribusi produk logam mulia untuk berbagai kebutuhan investasi dan industri.</p>
         </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            <div class="text-center scroll-reveal">
-                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg text-white font-serif font-bold text-xl">01</div>
-                <h3 class="text-base font-semibold text-gray-900 mb-2">Konsultasi Awal</h3>
-                <p class="text-sm text-gray-600">Memahami kebutuhan dan tujuan bisnis mitra secara mendalam.</p>
+        <div class="mt-10 grid sm:grid-cols-3 gap-6 scroll-reveal">
+            <div class="bg-white rounded-xl p-6 border border-gray-200 text-center">
+                <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3 class="text-sm font-semibold text-gray-900 mb-1">Potensi Pasar</h3>
+                <p class="text-xs text-gray-500 leading-relaxed">Permintaan logam mulia terus meningkat sejalan dengan pertumbuhan ekonomi dan kebutuhan investasi safe-haven.</p>
             </div>
-            <div class="text-center scroll-reveal">
-                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg text-white font-serif font-bold text-xl">02</div>
-                <h3 class="text-base font-semibold text-gray-900 mb-2">Penyusunan Solusi</h3>
-                <p class="text-sm text-gray-600">Merancang solusi yang tepat sesuai dengan kebutuhan spesifik mitra bisnis.</p>
+            <div class="bg-white rounded-xl p-6 border border-gray-200 text-center">
+                <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <h3 class="text-sm font-semibold text-gray-900 mb-1">Regulasi</h3>
+                <p class="text-xs text-gray-500 leading-relaxed">Industri diawasi oleh regulator yang memastikan standar operasi dan kepatuhan yang tinggi.</p>
             </div>
-            <div class="text-center scroll-reveal">
-                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg text-white font-serif font-bold text-xl">03</div>
-                <h3 class="text-base font-semibold text-gray-900 mb-2">Implementasi</h3>
-                <p class="text-sm text-gray-600">Melaksanakan solusi dengan standar kualitas dan keamanan tertinggi.</p>
-            </div>
-            <div class="text-center scroll-reveal">
-                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg text-white font-serif font-bold text-xl">04</div>
-                <h3 class="text-base font-semibold text-gray-900 mb-2">Dukungan Berkelanjutan</h3>
-                <p class="text-sm text-gray-600">Pendampingan dan evaluasi berkala untuk memastikan kepuasan mitra bisnis.</p>
+            <div class="bg-white rounded-xl p-6 border border-gray-200 text-center">
+                <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                </div>
+                <h3 class="text-sm font-semibold text-gray-900 mb-1">Pertumbuhan</h3>
+                <p class="text-xs text-gray-500 leading-relaxed">Peluang ekspansi melalui diversifikasi produk dan perluasan jaringan distribusi nasional.</p>
             </div>
         </div>
     </div>

@@ -1,0 +1,148 @@
+<!-- Page Header -->
+<section class="bg-gradient-to-br from-gray-50 via-white to-amber-50/30 py-14 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl scroll-reveal">
+            <div class="flex items-center gap-2 text-xs text-gray-500 mb-4">
+                <a href="/" class="hover:text-amber-700 transition-colors">Beranda</a>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-gray-900 font-medium">Hubungan Investor</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-serif font-bold text-gray-900">Hubungan Investor</h1>
+            <p class="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">Informasi korporasi, keterbukaan informasi, dan dokumen publik {{.Corp.LegalName}} untuk kepentingan pemegang saham dan pemangku kepentingan.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Emiten Facts -->
+<section class="py-14 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 scroll-reveal">
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Nama Emiten</p>
+                <p class="text-sm font-semibold text-gray-900">{{.Corp.LegalName}}</p>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Status</p>
+                <p class="text-sm font-semibold text-gray-900">{{fallback .Corp.Status "Perseroan Terbuka"}}</p>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Kode Saham</p>
+                <p class="text-sm font-semibold text-gray-900">{{fallback .Corp.Ticker "Akan diumumkan"}}</p>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Bursa</p>
+                <p class="text-sm font-semibold text-gray-900">{{fallback .Corp.StockExchange "Bursa Efek Indonesia (BEI)"}}</p>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Sektor</p>
+                <p class="text-sm font-semibold text-gray-900">{{fallback .Corp.Sector "Logam Mulia"}}</p>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Email IR</p>
+                <p class="text-sm font-semibold text-amber-700">{{.Corp.IREmail}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Documents & Disclosure -->
+<section class="py-14 lg:py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 scroll-reveal">
+            <span class="text-xs font-semibold text-amber-700 uppercase tracking-widest">Keterbukaan Informasi</span>
+            <h2 class="mt-3 text-2xl md:text-3xl font-serif font-bold text-gray-900">Dokumen & Laporan</h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 scroll-reveal">
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 text-center">
+                <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                </div>
+                <h3 class="text-sm font-semibold text-gray-900 mb-2">Laporan Tahunan</h3>
+                <p class="text-xs text-gray-500 mb-4">Laporan tahunan Perseroan yang memuat kinerja keuangan, operasional, dan tata kelola.</p>
+                {{if hasItems .Corp.Disclosures}}
+                <a href="/dokumen" class="text-xs text-amber-700 font-medium hover:underline">Lihat Dokumen →</a>
+                {{else}}
+                <p class="text-xs text-gray-400 italic">Dokumen akan tersedia setelah pencatatan</p>
+                {{end}}
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 text-center">
+                <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+                </div>
+                <h3 class="text-sm font-semibold text-gray-900 mb-2">Laporan Keuangan</h3>
+                <p class="text-xs text-gray-500 mb-4">Laporan keuangan berkala (kuartal dan tahunan) yang telah diaudit oleh akuntan publik independen.</p>
+                {{if hasItems .Corp.Documents}}
+                <a href="/dokumen" class="text-xs text-amber-700 font-medium hover:underline">Lihat Dokumen →</a>
+                {{else}}
+                <p class="text-xs text-gray-400 italic">Dokumen akan tersedia setelah pencatatan</p>
+                {{end}}
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 text-center">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3 class="text-sm font-semibold text-gray-900 mb-2">Keterbukaan Informasi</h3>
+                <p class="text-xs text-gray-500 mb-4">Informasi material dan fakta penting yang wajib disampaikan kepada publik sesuai regulasi.</p>
+                {{if hasItems .Corp.Disclosures}}
+                <a href="/dokumen" class="text-xs text-amber-700 font-medium hover:underline">Lihat Dokumen →</a>
+                {{else}}
+                <p class="text-xs text-gray-400 italic">Informasi akan diperbarui secara berkala</p>
+                {{end}}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- External Links -->
+<section class="py-14 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 scroll-reveal">
+            <span class="text-xs font-semibold text-amber-700 uppercase tracking-widest">Tautan Eksternal</span>
+            <h2 class="mt-3 text-2xl md:text-3xl font-serif font-bold text-gray-900">Lembaga Terkait</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 scroll-reveal">
+            {{if hasItems .Corp.ExternalLinks}}
+            {{range .Corp.ExternalLinks}}
+            <a href="{{.URL}}" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 rounded-xl p-5 border border-gray-100 hover:border-amber-200 hover:bg-amber-50/30 transition-all duration-300 group">
+                <p class="text-sm font-semibold text-gray-900 group-hover:text-amber-700 transition-colors">{{.Name}}</p>
+                <p class="text-xs text-gray-500 mt-1">{{.Description}}</p>
+            </a>
+            {{end}}
+            {{else}}
+            <a href="https://www.idx.co.id" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 rounded-xl p-5 border border-gray-100 hover:border-amber-200 hover:bg-amber-50/30 transition-all duration-300 group">
+                <p class="text-sm font-semibold text-gray-900 group-hover:text-amber-700 transition-colors">Bursa Efek Indonesia</p>
+                <p class="text-xs text-gray-500 mt-1">www.idx.co.id</p>
+            </a>
+            <a href="https://www.ojk.go.id" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 rounded-xl p-5 border border-gray-100 hover:border-amber-200 hover:bg-amber-50/30 transition-all duration-300 group">
+                <p class="text-sm font-semibold text-gray-900 group-hover:text-amber-700 transition-colors">Otoritas Jasa Keuangan</p>
+                <p class="text-xs text-gray-500 mt-1">www.ojk.go.id</p>
+            </a>
+            <a href="https://www.ksei.co.id" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 rounded-xl p-5 border border-gray-100 hover:border-amber-200 hover:bg-amber-50/30 transition-all duration-300 group">
+                <p class="text-sm font-semibold text-gray-900 group-hover:text-amber-700 transition-colors">KSEI</p>
+                <p class="text-xs text-gray-500 mt-1">www.ksei.co.id</p>
+            </a>
+            <a href="https://www.kpei.co.id" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 rounded-xl p-5 border border-gray-100 hover:border-amber-200 hover:bg-amber-50/30 transition-all duration-300 group">
+                <p class="text-sm font-semibold text-gray-900 group-hover:text-amber-700 transition-colors">KPEI</p>
+                <p class="text-xs text-gray-500 mt-1">www.kpei.co.id</p>
+            </a>
+            {{end}}
+        </div>
+    </div>
+</section>
+
+<!-- IR Contact -->
+<section class="py-14 lg:py-20 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 scroll-reveal">
+        <div class="bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 text-center">
+            <h2 class="text-xl font-serif font-bold text-gray-900 mb-3">Kontak Investor Relations</h2>
+            <p class="text-sm text-gray-600 mb-6">Untuk pertanyaan terkait kinerja Perseroan, kepemilikan saham, atau informasi investasi lainnya, silakan hubungi tim Investor Relations kami.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="mailto:{{.Corp.IREmail}}" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-amber-700 rounded-lg hover:bg-amber-800 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    {{.Corp.IREmail}}
+                </a>
+                <a href="/kontak" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-amber-700 border border-amber-700 rounded-lg hover:bg-amber-50 transition-colors">Formulir Kontak</a>
+            </div>
+        </div>
+    </div>
+</section>

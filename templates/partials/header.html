@@ -1,50 +1,54 @@
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <!-- Top bar -->
+    <div class="hidden lg:block bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-8 text-xs">
+            <span>{{.Corp.LegalName}} — {{.Corp.Status}}</span>
+            <div class="flex items-center gap-4">
+                <a href="mailto:{{.Corp.Email}}" class="hover:text-amber-400 transition-colors">{{.Corp.Email}}</a>
+                <span class="text-gray-600">|</span>
+                <a href="/investor" class="hover:text-amber-400 transition-colors">Investor Relations</a>
+            </div>
+        </div>
+    </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16 lg:h-20">
-            <!-- Logo -->
-            <a href="/" class="flex items-center gap-2 group" aria-label="PT Logam Gold Mulia Tbk - Beranda">
+        <div class="flex items-center justify-between h-16 lg:h-[68px]">
+            <a href="/" class="flex items-center gap-2.5 group" aria-label="PT Logam Gold Mulia Tbk - Beranda">
                 <div class="w-9 h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
                     <span class="text-white font-bold text-sm lg:text-base font-serif">LG</span>
                 </div>
                 <div class="flex flex-col">
                     <span class="text-sm lg:text-base font-semibold text-gray-900 leading-tight tracking-tight">Logam Gold</span>
-                    <span class="text-[10px] lg:text-xs text-amber-700 font-medium leading-tight">logam.gold</span>
+                    <span class="text-[10px] lg:text-xs text-amber-700 font-medium leading-tight">Perseroan Terbuka</span>
                 </div>
             </a>
-
-            <!-- Desktop Navigation -->
-            <nav class="hidden lg:flex items-center gap-1" aria-label="Navigasi utama">
+            <nav class="hidden lg:flex items-center gap-0.5" aria-label="Navigasi utama">
                 <a href="/" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-amber-700 rounded-lg transition-colors {{if eq .Page "home"}}text-amber-700 bg-amber-50{{end}}">Beranda</a>
-                <a href="/tentang" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-amber-700 rounded-lg transition-colors {{if eq .Page "tentang"}}text-amber-700 bg-amber-50{{end}}">Tentang</a>
-                <a href="/layanan" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-amber-700 rounded-lg transition-colors {{if eq .Page "layanan"}}text-amber-700 bg-amber-50{{end}}">Layanan</a>
-                <a href="/komitmen" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-amber-700 rounded-lg transition-colors {{if eq .Page "komitmen"}}text-amber-700 bg-amber-50{{end}}">Komitmen</a>
+                <a href="/tentang" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-amber-700 rounded-lg transition-colors {{if eq .Page "tentang"}}text-amber-700 bg-amber-50{{end}}">Profil</a>
+                <a href="/layanan" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-amber-700 rounded-lg transition-colors {{if eq .Page "layanan"}}text-amber-700 bg-amber-50{{end}}">Bisnis</a>
                 <a href="/tata-kelola" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-amber-700 rounded-lg transition-colors {{if eq .Page "tata-kelola"}}text-amber-700 bg-amber-50{{end}}">Tata Kelola</a>
+                <a href="/investor" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-amber-700 rounded-lg transition-colors {{if eq .Page "investor"}}text-amber-700 bg-amber-50{{end}}">Investor</a>
+                <a href="/dokumen" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-amber-700 rounded-lg transition-colors {{if eq .Page "dokumen"}}text-amber-700 bg-amber-50{{end}}">Dokumen</a>
                 <a href="/berita" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-amber-700 rounded-lg transition-colors {{if eq .Page "berita"}}text-amber-700 bg-amber-50{{end}}">Berita</a>
-                <a href="/faq" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-amber-700 rounded-lg transition-colors {{if eq .Page "faq"}}text-amber-700 bg-amber-50{{end}}">FAQ</a>
-                <a href="/kontak" class="ml-2 inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-amber-600 to-yellow-600 rounded-lg hover:from-amber-700 hover:to-yellow-700 shadow-md hover:shadow-lg transition-all">Hubungi Kami</a>
+                <a href="/kontak" class="ml-1 inline-flex items-center px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-amber-600 to-yellow-600 rounded-lg hover:from-amber-700 hover:to-yellow-700 shadow-md hover:shadow-lg transition-all">Kontak</a>
             </nav>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors" aria-label="Buka menu navigasi" aria-expanded="false">
+            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors" aria-label="Buka menu" aria-expanded="false">
                 <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
     </div>
-
-    <!-- Mobile Navigation -->
     <div id="mobile-menu" class="lg:hidden hidden border-t border-gray-100 bg-white">
-        <nav class="max-w-7xl mx-auto px-4 py-4 space-y-1" aria-label="Navigasi mobile">
-            <a href="/" class="block px-4 py-3 text-sm font-medium rounded-lg transition-colors {{if eq .Page "home"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Beranda</a>
-            <a href="/tentang" class="block px-4 py-3 text-sm font-medium rounded-lg transition-colors {{if eq .Page "tentang"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Tentang Perusahaan</a>
-            <a href="/layanan" class="block px-4 py-3 text-sm font-medium rounded-lg transition-colors {{if eq .Page "layanan"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Layanan & Bisnis</a>
-            <a href="/komitmen" class="block px-4 py-3 text-sm font-medium rounded-lg transition-colors {{if eq .Page "komitmen"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Komitmen Kami</a>
-            <a href="/tata-kelola" class="block px-4 py-3 text-sm font-medium rounded-lg transition-colors {{if eq .Page "tata-kelola"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Tata Kelola</a>
-            <a href="/berita" class="block px-4 py-3 text-sm font-medium rounded-lg transition-colors {{if eq .Page "berita"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Berita & Wawasan</a>
-            <a href="/faq" class="block px-4 py-3 text-sm font-medium rounded-lg transition-colors {{if eq .Page "faq"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">FAQ</a>
-            <a href="/kontak" class="block px-4 py-3 mt-2 text-sm font-semibold text-center text-white bg-gradient-to-r from-amber-600 to-yellow-600 rounded-lg">Hubungi Kami</a>
+        <nav class="max-w-7xl mx-auto px-4 py-3 space-y-1" aria-label="Navigasi mobile">
+            <a href="/" class="block px-4 py-2.5 text-sm font-medium rounded-lg transition-colors {{if eq .Page "home"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Beranda</a>
+            <a href="/tentang" class="block px-4 py-2.5 text-sm font-medium rounded-lg transition-colors {{if eq .Page "tentang"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Profil Perusahaan</a>
+            <a href="/layanan" class="block px-4 py-2.5 text-sm font-medium rounded-lg transition-colors {{if eq .Page "layanan"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Lini Bisnis</a>
+            <a href="/tata-kelola" class="block px-4 py-2.5 text-sm font-medium rounded-lg transition-colors {{if eq .Page "tata-kelola"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Tata Kelola</a>
+            <a href="/investor" class="block px-4 py-2.5 text-sm font-medium rounded-lg transition-colors {{if eq .Page "investor"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Hubungan Investor</a>
+            <a href="/dokumen" class="block px-4 py-2.5 text-sm font-medium rounded-lg transition-colors {{if eq .Page "dokumen"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Dokumen & Laporan</a>
+            <a href="/berita" class="block px-4 py-2.5 text-sm font-medium rounded-lg transition-colors {{if eq .Page "berita"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">Berita</a>
+            <a href="/faq" class="block px-4 py-2.5 text-sm font-medium rounded-lg transition-colors {{if eq .Page "faq"}}text-amber-700 bg-amber-50{{else}}text-gray-700 hover:text-amber-700 hover:bg-gray-50{{end}}">FAQ</a>
+            <a href="/kontak" class="block px-4 py-2.5 mt-1 text-sm font-semibold text-center text-white bg-gradient-to-r from-amber-600 to-yellow-600 rounded-lg">Hubungi Kami</a>
         </nav>
     </div>
 </header>
-<!-- Header spacer -->
-<div class="h-16 lg:h-20"></div>
+<div class="h-16 lg:h-[100px]"></div>
