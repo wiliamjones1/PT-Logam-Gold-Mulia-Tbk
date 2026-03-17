@@ -74,9 +74,6 @@ func main() {
 	app.Get("/faq", h.FAQ)
 	app.Get("/kontak", h.Kontak)
 
-	// Contact form handler
-	app.Post("/kontak/kirim", h.KontakSubmit)
-
 	port := cfg.Port
 	if port == "" {
 		port = "3000"

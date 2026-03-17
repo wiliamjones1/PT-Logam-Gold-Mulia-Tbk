@@ -1,14 +1,7 @@
 package handler
 
 import (
-	"bytes"
-	"encoding/json"
-	"fmt"
 	"html/template"
-	"io"
-	"log"
-	"net/http"
-	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html/v2"
@@ -18,14 +11,6 @@ import (
 
 type Handler struct {
 	cfg *config.Config
-}
-
-type ContactForm struct {
-	Nama       string `form:"nama"`
-	Email      string `form:"email"`
-	Telepon    string `form:"telepon"`
-	Perusahaan string `form:"perusahaan"`
-	Pesan      string `form:"pesan"`
 }
 
 func New(cfg *config.Config) *Handler {
@@ -109,132 +94,12 @@ func (h *Handler) FAQ(c *fiber.Ctx) error {
 
 func (h *Handler) Kontak(c *fiber.Ctx) error {
 	return c.Render("pages/kontak", fiber.Map{
-		"Title":       "Hubungi Kami — PT Logam Gold Mulia Tbk",
-		"Description": "Hubungi PT Logam Gold Mulia Tbk untuk informasi lebih lanjut, kerja sama, atau pertanyaan seputar layanan kami.",
-		"Canonical":   h.cfg.BaseURL + "/kontak",
-		"Page":        "kontak",
+		"Title":        "Hubungi Kami — PT Logam Gold Mulia Tbk",
+		"Description":  "Hubungi PT Logam Gold Mulia Tbk untuk informasi lebih lanjut, kerja sama, atau pertanyaan seputar layanan kami.",
+		"Canonical":    h.cfg.BaseURL + "/kontak",
+		"Page":         "kontak",
+		"Web3FormsKey": h.cfg.Web3FormsKey,
 	})
 }
 
-func (h *Handler) KontakSubmit(c *fiber.Ctx) error {
-	form := new(ContactForm)
-	if err := c.BodyParser(form); err != nil {
-		return c.Status(http.StatusBadRequest).Render("pages/kontak", fiber.Map{
-			"Title":       "Hubungi Kami — PT Logam Gold Mulia Tbk",
-			"Description": "Hubungi PT Logam Gold Mulia Tbk untuk informasi lebih lanjut.",
-			"Canonical":   h.cfg.BaseURL + "/kontak",
-			"Page":        "kontak",
-			"Error":       "Terjadi kesalahan saat memproses formulir. Silakan coba lagi.",
-		})
-	}
 
-	// Validate required fields
-	if form.Nama == "" || form.Email == "" || form.Pesan == "" {
-		return c.Status(http.StatusBadRequest).Render("pages/kontak", fiber.Map{
-			"Title":       "Hubungi Kami — PT Logam Gold Mulia Tbk",
-			"Description": "Hubungi PT Logam Gold Mulia Tbk untuk informasi lebih lanjut.",
-			"Canonical":   h.cfg.BaseURL + "/kontak",
-			"Page":        "kontak",
-			"Error":       "Mohon lengkapi semua kolom yang wajib diisi.",
-			"Form":        form,
-		})
-	}
-
-	// Validate email format (basic)
-	if !isValidEmail(form.Email) {
-		return c.Status(http.StatusBadRequest).Render("pages/kontak", fiber.Map{
-			"Title":       "Hubungi Kami — PT Logam Gold Mulia Tbk",
-			"Description": "Hubungi PT Logam Gold Mulia Tbk untuk informasi lebih lanjut.",
-			"Canonical":   h.cfg.BaseURL + "/kontak",
-			"Page":        "kontak",
-			"Error":       "Format alamat email tidak valid.",
-			"Form":        form,
-		})
-	}
-
-	// Send email notification
-	if h.cfg.Web3FormsKey != "" {
-		log.Printf("Sending contact form to %s via Web3Forms", h.cfg.ContactEmail)
-		if err := h.sendContactEmail(form); err != nil {
-			log.Printf("Failed to send contact email: %v", err)
-			return c.Render("pages/kontak", fiber.Map{
-				"Title":       "Hubungi Kami — PT Logam Gold Mulia Tbk",
-				"Description": "Hubungi PT Logam Gold Mulia Tbk untuk informasi lebih lanjut.",
-				"Canonical":   h.cfg.BaseURL + "/kontak",
-				"Page":        "kontak",
-				"Error":       "Maaf, terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti.",
-				"Form":        form,
-			})
-		}
-	} else {
-		log.Printf("Contact form submission (email not configured): Nama=%s, Email=%s, Pesan=%s", form.Nama, form.Email, form.Pesan)
-	}
-
-	return c.Render("pages/kontak", fiber.Map{
-		"Title":       "Hubungi Kami — PT Logam Gold Mulia Tbk",
-		"Description": "Hubungi PT Logam Gold Mulia Tbk untuk informasi lebih lanjut.",
-		"Canonical":   h.cfg.BaseURL + "/kontak",
-		"Page":        "kontak",
-		"Success":     "Terima kasih! Pesan Anda telah berhasil dikirim. Tim kami akan menghubungi Anda dalam waktu dekat.",
-	})
-}
-
-func (h *Handler) sendContactEmail(form *ContactForm) error {
-	payload := map[string]string{
-		"access_key": h.cfg.Web3FormsKey,
-		"subject":    fmt.Sprintf("[Logam Gold] Pesan dari %s", form.Nama),
-		"from_name":  "PT Logam Gold Mulia Tbk",
-		"name":       form.Nama,
-		"email":      form.Email,
-		"phone":      form.Telepon,
-		"company":    form.Perusahaan,
-		"message":    form.Pesan,
-	}
-
-	jsonData, err := json.Marshal(payload)
-	if err != nil {
-		return fmt.Errorf("marshal: %w", err)
-	}
-
-	req, err := http.NewRequest("POST", "https://api.web3forms.com/submit", bytes.NewReader(jsonData))
-	if err != nil {
-		return fmt.Errorf("new request: %w", err)
-	}
-	req.Header.Set("Content-Type", "application/json")
-
-	client := &http.Client{Timeout: 15 * time.Second}
-	resp, err := client.Do(req)
-	if err != nil {
-		return fmt.Errorf("send request: %w", err)
-	}
-	defer resp.Body.Close()
-
-	respBody, _ := io.ReadAll(resp.Body)
-
-	if resp.StatusCode >= 400 {
-		return fmt.Errorf("web3forms API error (status %d): %s", resp.StatusCode, string(respBody))
-	}
-
-	log.Printf("Email sent successfully: %s", string(respBody))
-	return nil
-}
-
-func isValidEmail(email string) bool {
-	if len(email) < 5 || len(email) > 254 {
-		return false
-	}
-	at := false
-	dot := false
-	for i, c := range email {
-		if c == '@' {
-			if at || i == 0 {
-				return false
-			}
-			at = true
-		}
-		if at && c == '.' && i > 0 {
-			dot = true
-		}
-	}
-	return at && dot
-}

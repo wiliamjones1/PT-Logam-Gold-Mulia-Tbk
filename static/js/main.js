@@ -100,11 +100,13 @@
     });
 
     // =============================================
-    // Contact Form Validation
+    // Contact Form — Client-side Web3Forms Submit
     // =============================================
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
             let isValid = true;
             const requiredFields = contactForm.querySelectorAll('[required]');
 
@@ -117,7 +119,7 @@
             });
 
             requiredFields.forEach(function (field) {
-                const value = field.value.trim();
+                var value = field.value.trim();
                 if (!value) {
                     isValid = false;
                     showFieldError(field, 'Kolom ini wajib diisi');
@@ -130,9 +132,71 @@
                 }
             });
 
-            if (!isValid) {
-                e.preventDefault();
-            }
+            if (!isValid) return;
+
+            // Hide previous messages
+            var successEl = document.getElementById('form-success');
+            var errorEl = document.getElementById('form-error');
+            if (successEl) successEl.classList.add('hidden');
+            if (successEl) successEl.classList.remove('flex');
+            if (errorEl) errorEl.classList.add('hidden');
+            if (errorEl) errorEl.classList.remove('flex');
+
+            // Show loading state
+            var submitBtn = document.getElementById('submit-btn');
+            var btnText = document.getElementById('btn-text');
+            var btnIcon = document.getElementById('btn-icon');
+            var btnSpinner = document.getElementById('btn-spinner');
+            if (submitBtn) submitBtn.disabled = true;
+            if (btnText) btnText.textContent = 'Mengirim...';
+            if (btnIcon) btnIcon.classList.add('hidden');
+            if (btnSpinner) btnSpinner.classList.remove('hidden');
+
+            var formData = new FormData(contactForm);
+            var object = {};
+            formData.forEach(function (value, key) {
+                object[key] = value;
+            });
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(object)
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.success) {
+                    if (successEl) {
+                        successEl.classList.remove('hidden');
+                        successEl.classList.add('flex');
+                    }
+                    contactForm.reset();
+                } else {
+                    var errorTextEl = document.getElementById('form-error-text');
+                    if (errorTextEl) errorTextEl.textContent = data.message || 'Maaf, terjadi kesalahan saat mengirim pesan.';
+                    if (errorEl) {
+                        errorEl.classList.remove('hidden');
+                        errorEl.classList.add('flex');
+                    }
+                }
+            })
+            .catch(function () {
+                if (errorEl) {
+                    errorEl.classList.remove('hidden');
+                    errorEl.classList.add('flex');
+                }
+            })
+            .finally(function () {
+                if (submitBtn) submitBtn.disabled = false;
+                if (btnText) btnText.textContent = 'Kirim Pesan';
+                if (btnIcon) btnIcon.classList.remove('hidden');
+                if (btnSpinner) btnSpinner.classList.add('hidden');
+            });
         });
     }
 
